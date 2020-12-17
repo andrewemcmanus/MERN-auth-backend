@@ -12,6 +12,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+// This is what runs in Postman:
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Smile, you are being watched by the back end engineering team! <3'})
 });
