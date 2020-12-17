@@ -26,7 +26,7 @@ db.on('error', (error) => {
   // \n refers to line break
 });
 // THIS:
-const User = require('./User');
-module.exports = User;
+// const User = require('./User');
+// module.exports = User;
 // SAME AS:
-// module.exports.User = require('./User');
+module.exports.User = require('./User');
