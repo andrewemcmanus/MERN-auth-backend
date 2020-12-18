@@ -8,11 +8,12 @@ const passport = require('passport');
 const { JWT_SECRET } = require('../config/keys')
 // Models
 const db = require('../models');
-// GET api/users/test (Public)
+
+// GET controllers/users/test (Public)
 router.get('/test', (req, res) => {
     res.json({ msg: 'User endpoint OK!'});
 });
-// POST api/users/register (Public)
+// POST controllers/users/register (Public)
 router.post('/register', (req, res) => {
     // console.log('inside of register')
     console.log(req.body);
@@ -71,7 +72,7 @@ db.User.findOne({ email }).then(user => {
           email: user.email,
           name: user.name
         };
-        // sign token: see jwt above
+        // sign token: SEE JWT ABOVE
         jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' }, (error, token) => {
           res.json({
             success: true,
@@ -83,6 +84,16 @@ db.User.findOne({ email }).then(user => {
       }
     })
   }
+})
+
+// GET controllers/users/current (PRIVATE), jwt defined above
+router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+  res.json({
+    id: req.user.id,
+    name: req.user.name,
+    email: req.user.email
+  })
+
 })
 
 })

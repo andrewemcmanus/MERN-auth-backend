@@ -9,6 +9,7 @@ require('./config/passport')(passport);
 const PORT = process.env.PORT || 8000;
 
 const users = require('./controllers/users');
+const books = require('./controllers/books')
 
 // Middleware
 app.use(cors());
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/controllers/users', users);
+app.use('./controllers/books', books);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port: ${PORT}`)
