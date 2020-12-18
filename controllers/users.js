@@ -13,7 +13,7 @@ router.get('/test', (req, res) => {
 });
 // POST api/users/register (Public)
 router.post('/register', (req, res) => {
-    console.log('inside of register')
+    // console.log('inside of register')
     console.log(req.body);
     console.log(db);
     db.User.findOne({ email: req.body.email })
